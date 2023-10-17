@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello
+  name: hello-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+        - image: hello:latest
+          imagePullPolicy: Never
+          name: hello
+          resources: {}
+          envFrom:
+            - configMapRef:
+                name: hello-config
+      restartPolicy: Always

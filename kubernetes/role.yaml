@@ -1,0 +1,8 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: role-test-account
+rules:
+  - apiGroups: [""]
+    resources: ["pods","services","namespaces","deployments","jobs","configmaps"]
+    verbs: ["get", "watch", "list"]

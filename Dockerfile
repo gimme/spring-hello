@@ -1,0 +1,13 @@
+FROM eclipse-temurin:20-jre-alpine
+
+ARG JAR_FILE=hello-0.0.1-SNAPSHOT.jar
+ARG SPRING_PROFILE=local
+ENV SPRING_PROFILE_ENV=$SPRING_PROFILE
+ENV JAR_FILE_ENV=$JAR_FILE
+ENV JAR_HOME /usr/apps
+
+COPY build/libs/$JAR_FILE $JAR_HOME/
+
+WORKDIR $JAR_HOME
+
+ENTRYPOINT java -Xms256m -Xmx512m -Dspring.profiles.active=$SPRING_PROFILE_ENV -jar $JAR_FILE_ENV

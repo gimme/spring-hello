@@ -1,0 +1,17 @@
+# hello.greetings: Hello from Hello!
+hello.a: a
+hello.b: b
+hello.c: ${hello.a}-${hello.b}-c
+spring:
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          retry:
+            mode: exponential
+            exponential:
+              max-retries: 4
+              base-delay: PT0.0801S
+              max-delay: PT9S
+          property-sources:
+            - endpoint: ${hello.greetings}-${hello.a}-${hello.b}-${hello.c}
